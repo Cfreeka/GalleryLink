@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="com_google_android_gms_fonts_certs">
+        <!-- Base64-encoded SHA-256 of Google's certificate -->
+        <item>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmzRcTCoXReLzdQ50N+MgknI2W0GPvBtKTwtHx5n5ILx9BlD6O0/YMH0eO6xlFcwBwzhtprwb5BBR0KNL6uwzMxnCwWZQH+y7BLXuoLpl2D2Lf8UNwjDh5PmGjrg9O/UyzvljNoWgD2DixKlEs5IdlfOcb49+qvFoUzzYnnXCU2JpUODJc9W3pSvXDDtFST3/Bj2rYYsGpAyKdy5AgMBAAE=</item>
+    </array>
+</resources>
