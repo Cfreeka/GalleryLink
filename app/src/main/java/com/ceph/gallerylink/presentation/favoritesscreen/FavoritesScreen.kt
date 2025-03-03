@@ -4,19 +4,14 @@ package com.ceph.gallerylink.presentation.favoritesscreen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,22 +25,18 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import com.ceph.gallerylink.domain.model.UnsplashImage
 import com.ceph.gallerylink.presentation.components.ImageVerticalGrid
-import com.ceph.gallerylink.presentation.components.ImageVistaTopAppBar
 import com.ceph.gallerylink.presentation.components.ZoomedImageCard
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavoritesScreen(
-    onBackClick: () -> Unit,
     favouriteImageIds: List<String>,
     favouriteImages: LazyPagingItems<UnsplashImage>,
-    onSearchClick: () -> Unit,
-    scrollBehavior: TopAppBarScrollBehavior,
     onImageClick: (String) -> Unit,
     onToggleFavoriteStatus: (UnsplashImage) -> Unit,
+    paddingValues: PaddingValues
 
-    ) {
+) {
 
     var showImagePreview by remember { mutableStateOf(false) }
     var activeImage by remember { mutableStateOf<UnsplashImage?>(null) }
@@ -53,26 +44,11 @@ fun FavoritesScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
-
-            ImageVistaTopAppBar(
-                title = "Favourites",
-                onSearchClick = onSearchClick,
-                scrollBehavior = scrollBehavior,
-                navigation = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                            contentDescription = "Close"
-                        )
-                    }
-
-                }
-            )
-
 
 
             ImageVerticalGrid(
@@ -102,6 +78,7 @@ fun FavoritesScreen(
 
     }
 }
+
 @Composable
 private fun EmptyState(modifier: Modifier = Modifier) {
     Column(

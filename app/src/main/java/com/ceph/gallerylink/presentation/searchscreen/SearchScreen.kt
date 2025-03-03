@@ -51,7 +51,7 @@ fun SearchScreen(
     searchedImages: LazyPagingItems<UnsplashImage>,
     onImageClick: (String) -> Unit,
     onSearch: (String)-> Unit,
-    onToggleStatus: (UnsplashImage)->Unit
+    onToggleStatus: (UnsplashImage)->Unit,
 ) {
 
     var showImagePreview by remember { mutableStateOf(false) }

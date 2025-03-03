@@ -2,7 +2,6 @@ package com.ceph.gallerylink.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,7 +24,6 @@ import androidx.navigation.compose.rememberNavController
 import com.ceph.gallerylink.domain.model.NetworkStatus
 import com.ceph.gallerylink.domain.repository.NetworkConnectivityObserver
 import com.ceph.gallerylink.presentation.components.NetworkStatusBar
-//import com.ceph.imagevista.domain.repository.NetworkConnectivityObserver
 import com.ceph.gallerylink.presentation.navigation.NavHostSetUp
 import com.ceph.gallerylink.ui.theme.ImageVistaTheme
 import kotlinx.coroutines.CoroutineScope
@@ -42,18 +40,14 @@ class MainActivity : ComponentActivity() {
     private val repo: NetworkConnectivityObserver
             by inject { parametersOf(this@MainActivity, coroutineScope) }
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         installSplashScreen()
 
-        window.decorView.systemUiVisibility = View.VISIBLE
-        actionBar?.hide()
 
-
-
+        enableEdgeToEdge()
         setContent {
             val status by repo.networkStatus.collectAsState()
             var showMessageBar by rememberSaveable {
@@ -112,7 +106,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         scrollBehavior = scrollBehavior,
                         searchQuery = searchQuery,
-                        onSearchQueryChange = { searchQuery = it }
+                        onSearchQueryChange = { searchQuery = it },
                     )
 
                 }

@@ -11,9 +11,13 @@ import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -51,7 +55,8 @@ fun FullImageScreen(
     image: UnsplashImage?,
     onBackClick: () -> Unit,
     onPhotographerNameClick: (String) -> Unit,
-    onImageDownloadClick: (String, String?) -> Unit
+    onImageDownloadClick: (String, String?) -> Unit,
+    paddingValues: PaddingValues
 ) {
 
     val context = LocalContext.current
@@ -109,7 +114,7 @@ fun FullImageScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         BoxWithConstraints(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(paddingValues),
             contentAlignment = Alignment.Center
         ) {
 
@@ -174,7 +179,7 @@ fun FullImageScreen(
         FullImageTopBar(
             modifier = Modifier
                 .align(TopCenter)
-                .padding(start = 10.dp, top = 50.dp)
+                .windowInsetsPadding(WindowInsets.statusBars)
                 .fillMaxWidth(),
             image = image,
             isVisible = showBars,
